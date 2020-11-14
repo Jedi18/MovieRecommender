@@ -5,7 +5,7 @@ class Movie(models.Model):
     movie_id = models.CharField(max_length = 10, primary_key=True)
     title = models.CharField(max_length = 100)
     is_adult = models.BooleanField()
-    year = models.DateField()
+    year = models.IntegerField()
     runtime = models.IntegerField()
 
 class MovieGenre(models.Model):
