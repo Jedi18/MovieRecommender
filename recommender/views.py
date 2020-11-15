@@ -14,3 +14,15 @@ def search(request):
         return render(request, "recommender/search.html", {'movieslist' : movieslist})
     else:
         return render(request, "recommender/index.html")
+
+def movie(request):
+    if request.GET.get('movie_id'):
+        movid = request.GET.get('movie_id')
+        movie = Movie.objects.get(movie_id=movid)
+        return render(request, "recommender/movie.html", {'movie' : movie})
+    else:
+        return render(request, "recommender/index.html")
+
+def similar(request):
+    print(request.GET.get('movie_id'))
+    return render(request, "recommender/similar.html")

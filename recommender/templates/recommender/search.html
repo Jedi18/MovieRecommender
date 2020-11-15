@@ -5,7 +5,7 @@
 {% block body %}
 <ul class="list-group">
     {% for movie in movieslist %}
-      <li class="list-group-item">{{movie.title}}</li>
+      <li class="list-group-item"><a href="{% url 'movie' %}?movie_id={{movie.movie_id}}">{{movie.title}}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

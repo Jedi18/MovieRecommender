@@ -1,0 +1,15 @@
+{% extends "recommender/base.html" %}
+
+{% block title %}Movie Recommender{% endblock %}
+
+{% block body %}
+<h1>Movie Data</h1>
+<h2>{{movie.title}}</h2>
+<h3>{{movie.year}}</h3>
+<form action="{% url 'similar' %}" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Find similar movies</button>
+    </div>
+</form>
+{% endblock %}
