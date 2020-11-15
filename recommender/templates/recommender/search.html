@@ -1,0 +1,11 @@
+{% extends "recommender/base.html" %}
+
+{% block title %}Movie Recommender{% endblock %}
+
+{% block body %}
+<ul class="list-group">
+    {% for movie in movieslist %}
+      <li class="list-group-item">{{movie.title}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

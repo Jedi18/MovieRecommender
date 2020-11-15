@@ -1,0 +1,14 @@
+{% extends "recommender/base.html" %}
+
+{% block title %}Movie Recommender{% endblock %}
+
+{% block body %}
+<form action="{% url 'search' %}" method="get">
+    <div class="form-group"></div>
+        <input name="title" class="form-control form-control-lg" type="text" placeholder="Enter movie name ...">
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+{% endblock %}

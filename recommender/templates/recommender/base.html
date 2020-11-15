@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <script type="text/javascript" src="{% static 'recommender/js/bootstrap/bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'recommender/css/bootstrap/bootstrap.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="container">
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>
