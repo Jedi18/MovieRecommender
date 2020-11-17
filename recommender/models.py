@@ -16,3 +16,7 @@ class MovieRatings(models.Model):
     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
     average_rating = models.DecimalField(max_digits = 3, decimal_places = 1)
     num_votes = models.IntegerField()
+
+class Directors(models.Model):
+    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    director_id = models.CharField(max_length = 10)

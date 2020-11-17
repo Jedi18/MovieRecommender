@@ -4,4 +4,9 @@
 
 {% block body %}
 Similar movies!
+<ul class="list-group">
+    {% for movie in movies %}
+      <li class="list-group-item">{{movie.title}}</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}
