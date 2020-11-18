@@ -6,10 +6,34 @@
 <h1>Movie Data</h1>
 <h2>{{movie.title}}</h2>
 <h3>{{movie.year}}</h3>
+<h4>Rating : {{ratings.average_rating}}</h4>
+<h5>Number of votes : {{ratings.num_votes}}</h5>
 <form action="{% url 'similar' %}" method="get">
     <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <input type="hidden" name="search_type" value="title">
     <div class="text-center">
-        <button class="btn btn-primary" type="submit">Find similar movies</button>
+        <button class="btn btn-primary" type="submit">Find similar movies by similar words in title</button>
+    </div>
+</form>
+<form action="{% url 'similar' %}?" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <input type="hidden" name="search_type" value="director">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Find movies by same director</button>
+    </div>
+</form>
+<form action="{% url 'similar' %}" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <input type="hidden" name="search_type" value="genre">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Find popular movies of same genre</button>
+    </div>
+</form>
+<form action="{% url 'similar' %}" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <input type="hidden" name="search_type" value="year">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Find movies of same genre released in the same year</button>
     </div>
 </form>
 {% endblock %}
