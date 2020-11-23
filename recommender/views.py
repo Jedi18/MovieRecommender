@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -23,7 +25,10 @@ def movie(request):
         movid = request.GET.get('movie_id')
         movie = Movie.objects.get(movie_id=movid)
         genres = MovieGenre.objects.filter(movie_id=movid)
-        ratings = MovieRatings.objects.get(movie_id=movid)
+        try:
+            ratings = MovieRatings.objects.get(movie_id=movid)
+        except MovieRatings.DoesNotExist:
+            ratings = None
         return render(request, "recommender/movie.html", {'movie' : movie, 'genres' : genres, 'ratings' : ratings})
     else:
         return render(request, "recommender/index.html")
@@ -32,8 +37,6 @@ def similar(request):
     org_movie = Movie.objects.get(movie_id=request.GET.get('movie_id'))
     search_type = request.GET.get('search_type')
 
-    print(search_type)
-        
     if search_type == 'title':
         return render(request, "recommender/similar.html", {'movies' : getMoviesContainingSameWordsInTitle(org_movie)})
     elif search_type == 'director':
@@ -44,6 +47,28 @@ def similar(request):
         return render(request, "recommender/similar.html", {'movies' : getMoviesInSameYear(org_movie)})
     else:
         return render(request, "recommender/index.html")
+
+def addmovie(request):
+    if request.method == "POST":
+        newtitle = request.POST.get('title')
+        if request.POST.get('year') == 'on':
+            newisadult = True
+        else:
+            newisadult = False
+        newrandomid = "custom" + str(random.randint(0,100000))
+        newyear = request.POST.get('year')
+        newgenres = request.POST.getlist('genres')
+        newmovie = Movie(movie_id=newrandomid, title=newtitle, is_adult=newisadult, year=newyear, runtime=newyear)
+        newmovie.save()
+
+        for genre in newgenres:
+            newgenre = MovieGenre(movie_id=newmovie, genre=genre)
+            newgenre.save()
+
+        return render(request, "recommender/index.html")
+    else:
+        genres_list = [movGenre['genre'] for movGenre in MovieGenre.objects.order_by().values('genre').distinct()]
+        return render(request, "recommender/addmovie.html", {'genres' : genres_list})
 
 # movies directed by the same director
 def getMoviesBySameDirector(org_movie):

@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('search', views.search, name='search'),
     path('movie', views.movie, name='movie'),
-    path('similar', views.similar, name='similar')
+    path('similar', views.similar, name='similar'),
+    path('addmovie', views.addmovie, name='addmovie')
 ]
