@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 
 from .models import Movie
@@ -69,6 +70,45 @@ def addmovie(request):
     else:
         genres_list = [movGenre['genre'] for movGenre in MovieGenre.objects.order_by().values('genre').distinct()]
         return render(request, "recommender/addmovie.html", {'genres' : genres_list})
+
+def updatemovie(request):
+    if request.method == "POST":
+        newtitle = request.POST.get('title')
+        if request.POST.get('year') == 'on':
+            newisadult = True
+        else:
+            newisadult = False
+        newyear = request.POST.get('year')
+
+        movie = Movie.objects.get(movie_id=request.POST.get('movie_id'))
+        movie.title = newtitle
+        movie.is_adult = newisadult
+        movie.year = newyear
+        movie.save()
+
+        return redirect('success')
+    else:
+        movid = request.GET.get('movie_id')
+        movie = Movie.objects.get(movie_id=movid)
+        return render(request, "recommender/updatemovie.html", {'movie' : movie})
+
+def deletemovie(request):
+    if request.GET.get('movie_id'):
+        movid = request.GET.get('movie_id')
+        try:
+            movie = Movie.objects.get(movie_id=movid)
+            genres = MovieGenre.objects.filter(movie_id=movid)
+            movie.delete()
+
+            for genre in genres:
+                genre.delete()
+        except:
+            print("Movie not found")
+
+    return redirect('success')
+
+def success(request):
+    return render(request, "recommender/index.html")
 
 # movies directed by the same director
 def getMoviesBySameDirector(org_movie):

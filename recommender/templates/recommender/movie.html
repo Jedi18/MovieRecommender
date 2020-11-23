@@ -36,4 +36,16 @@
         <button class="btn btn-primary" type="submit">Find movies of same genre released in the same year</button>
     </div>
 </form>
+<form action="{% url 'updatemovie' %}" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Update movie</button>
+    </div>
+</form>
+<form action="{% url 'deletemovie' %}" method="get">
+    <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Delete movie</button>
+    </div>
+</form>
 {% endblock %}
