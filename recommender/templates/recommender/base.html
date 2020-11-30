@@ -9,10 +9,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="{% static 'recommender/css/style.css' %}">
+
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <div class="container">
+      <div class="row justify-content-center my-5">
+        <div class="col-12 text-center">
+            <a href="{% url 'index' %}" class="text-decoration-none"><h1 class="base-heading base-heading-one text-white"><span class="head-span">MO</span>VIE</h1></a>
+            <a href="{% url 'index' %}" class="text-decoration-none"><h1 class="base-heading text-white"><span class="head-span">REC</span>OMMENDER</h1></a>
+        </div>
+      </div>
       {% block body %}{% endblock %}
     </div>
   </body>

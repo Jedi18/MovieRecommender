@@ -7,17 +7,17 @@
     {% csrf_token %}
     <input type="hidden" name="movie_id" value="{{movie.movie_id}}">
     <div class="form-group">
-        <label for="inputTitle">Movie title</label>
+        <label for="inputTitle" class="text-light">Movie title</label>
         <input name="title"  type="text" class="form-control" id="inputTitle" value="{{movie.title}}" aria-describedby="titleHelp" placeholder="Enter movie title">
     </div>
     <div class="form-group form-check">
         <input name="isadult" type="checkbox" class="form-check-input" id="inputIsAdult" {% if movie.is_adult %}checked{% endif %}>
-        <label class="form-check-label" for="inputIsAdult">Is Adult?</label>
+        <label class="form-check-label text-light" for="inputIsAdult">Is Adult?</label>
     </div>
     <div class="form-group">
-        <label for="inputYear">Year</label>
+        <label for="inputYear" class="text-light">Year</label>
         <input name="year"  type="text" class="form-control" id="inputYear" value="{{movie.year}}" placeholder="Enter year of release">
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class=" btn btn-success btn-lg">Update</button>
 </form>
 {% endblock %}
