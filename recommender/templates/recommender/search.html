@@ -3,9 +3,26 @@
 {% block title %}Movie Recommender{% endblock %}
 
 {% block body %}
-<ul class="list-group">
-    {% for movie in movieslist %}
-      <li class="list-group-item"><a href="{% url 'movie' %}?movie_id={{movie.movie_id}}">{{movie.title}}</a></li>
-    {% endfor %}
-  </ul>
+<table class=" mb-5  table shadow table-hover text-dark table-borderless">
+          <thead class="thead">
+            <tr>
+              <th class="pl-5" scope="col">Movie Name</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for movie in movieslist %}
+                <tr class="table-warning">
+                    <td class="pl-5">{{movie.title}}</td>
+                    <td >
+                        <a class="hidden" href="{% url 'movie' %}?movie_id={{movie.movie_id}}">
+                            <button class="btn btn-sm btn-success px-3">
+                                Details
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+             {% endfor %}
+          </tbody>
+    </table>
 {% endblock %}

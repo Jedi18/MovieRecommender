@@ -6,24 +6,25 @@
 <form action="{% url 'addmovie' %}" method="post">
     {% csrf_token %}
     <div class="form-group">
-        <label for="inputTitle">Movie title</label>
+        <label for="inputTitle" class="text-light">Movie title</label>
         <input name="title"  type="text" class="form-control" id="inputTitle" aria-describedby="titleHelp" placeholder="Enter movie title">
     </div>
     <div class="form-group form-check">
         <input name="isadult" type="checkbox" class="form-check-input" id="inputIsAdult">
-        <label class="form-check-label" for="inputIsAdult">Is Adult?</label>
+        <label class="form-check-label text-light" for="inputIsAdult">Is Adult?</label>
     </div>
     <div class="form-group">
-        <label for="inputYear">Year</label>
+        <label for="inputYear" class="text-light">Year</label>
         <input name="year"  type="text" class="form-control" id="inputYear" placeholder="Enter year of release">
     </div>
     <div class="form-group">
-        <select class="form-control selectpicker" multiple data-live-search="true" name="genres">
+        <label for="genre" class="text-light">Select genre</label>
+        <select id="genre" class="form-control selectpicker" multiple data-live-search="true" name="genres">
             {% for genre in genres %}
                 <option>{{genre}}</option>
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success btn-lg">Submit</button>
 </form>
 {% endblock %}
